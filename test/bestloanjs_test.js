@@ -6,7 +6,7 @@ var assert   = require('assert'),
 describe('loanjs node module.', function() {
   it('must count best loan', function() {
     // amount, maxInstallment, maxInstallmentsNumber, interestRate, savingsInterestRate, params
-    var variants = new BestLoan(420000, 3000, 12*30, 4.5, 3.5, {tax:19}),
+    var variants = new BestLoan(420000, 3000, 12*30, 4.5, 3.5, 1, 'months', {tax:19}),
         v,
         b = variants.best;
 

@@ -9,7 +9,9 @@
 
 (function() {
   module.exports = {
-    Loan: require('./lib/loan'),
+    Loan: require('./lib/loan').Loan,
+    LoanScheduleDates: require('./lib/loan').LoanScheduleDates,
+    moment: require('./lib/loan').moment,
     BestLoan: require('./lib/bestLoan'),
     loanToHtmlTable: require('./lib/loanToHtmlTable'),
   };

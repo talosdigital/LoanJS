@@ -44,6 +44,7 @@
     "browser": "browserify LoanJS.js > browser.js"
   },
   "dependencies": {
-    "interestjs": "0.0.2"
+    "interestjs": "0.0.2",
+    "moment": "^2.8.4"
   }
 }
