@@ -61,6 +61,7 @@ describe('Loan Payment Schedule Dates', function(){
     var numberOfInstallments = 6;
     var currentDate;
     var rawDates = loanScheduleDates.getAllPaymentsDates(periodDuration, periodType, numberOfInstallments);
+    var nextDate;
 
     assert.strictEqual(rawDates.length, numberOfInstallments);
 
@@ -68,11 +69,12 @@ describe('Loan Payment Schedule Dates', function(){
 
     for(periodIterator=0; periodIterator<numberOfInstallments-1; periodIterator++){
 
-      currentDate = moment(rawDates[periodIterator+1]);
+      currentDate = moment(rawDates[periodIterator]);
+      nextDate = moment(rawDates[periodIterator+1]);
 
-      assert(currentDate.subtract(periodDuration, periodType).isSame(rawDates[periodIterator]));
+      assert.equal(true, nextDate.subtract(periodDuration, periodType).isSame(currentDate));
       assert.equal(false, currentDate.subtract(periodDuration+1, periodType).isSame(rawDates[periodIterator]));
-
+      assert.equal(false, currentDate.minutes() === nextDate.minutes());
     }
 
     periodDuration = 5;
@@ -84,9 +86,10 @@ describe('Loan Payment Schedule Dates', function(){
 
     for(periodIterator=0; periodIterator<numberOfInstallments-1; periodIterator++){
 
-      currentDate = moment(rawDates[periodIterator+1]);
-      assert(currentDate.isWorkingDay());
-
+      currentDate = moment(rawDates[periodIterator]);
+      nextDate = moment(rawDates[periodIterator+1]);
+      assert.equal(true, currentDate.isWorkingDay());
+      assert.equal(false, currentDate.date() === nextDate.date());
     }
   });
 
